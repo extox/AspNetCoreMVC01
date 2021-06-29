@@ -1,4 +1,5 @@
 ﻿using AspNetCoreMVC01.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,20 @@ namespace AspNetCoreMVC01.Services
 {
     public class ProductService : IProductService
     {
+        private readonly IConfiguration _configuration;
+
+        public ProductService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public List<Product> GetProductList()
         {
-            return new List<Product>
+            using (var db = new BaseDbContext(_configuration))
             {
-                new Product() {PNo=1001, Name="Apple Iphone12", Price=800.00m},
-                new Product() {PNo=1002, Name="Samesung Gallaxy20", Price=900.00m},
-                new Product() {PNo=1003, Name="Samesung Gallaxy10", Price=500.00m},
-                new Product() {PNo=1004, Name="Apple MacBook Pro M1", Price=2100.00m}
-
-            };
+                return db.ProductList
+                    .OrderByDescending(n => n.PNo)
+                    .ToList();
+            }
             throw new NotImplementedException();
         }
 

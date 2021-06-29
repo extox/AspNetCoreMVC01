@@ -1,4 +1,5 @@
-﻿using AspNetCoreMVC01.Models;
+﻿using AspNetCoreMVC01.Data;
+using AspNetCoreMVC01.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,15 @@ namespace AspNetCoreMVC01.Services
         public ProductService(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            //DB 초기화
+            using (var db = new BaseDbContext(_configuration))
+            {
+                DbInitializer.Initialize(db);
+            }
         }
+
+
         public List<Product> GetProductList()
         {
             using (var db = new BaseDbContext(_configuration))

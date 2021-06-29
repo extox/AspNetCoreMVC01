@@ -1,7 +1,9 @@
+using AspNetCoreMVC01.Data;
 using AspNetCoreMVC01.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,9 +26,15 @@ namespace AspNetCoreMVC01
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IConfiguration>(Configuration);
-            services.AddControllersWithViews();
+            //services.AddSingleton<IConfiguration>(Configuration);
+            services.AddDbContext<BaseDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AzureSQLServerConnection")));
+            //services.AddDatabaseDeveloperPageExceptionFilter();
+
+
+
             services.AddTransient<IProductService, ProductService>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

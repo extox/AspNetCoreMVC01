@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMVC01.Models
 {
-    [Keyless]
     public class Product
     {
         /// <summary>

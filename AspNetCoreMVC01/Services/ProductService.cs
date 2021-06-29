@@ -20,13 +20,13 @@ namespace AspNetCoreMVC01.Services
             using (var db = new BaseDbContext(_configuration))
             {
                 return db.ProductList
-                    .OrderByDescending(n => n.PNo)
+                    .OrderByDescending(n => n.Id)
                     .ToList();
             }
             throw new NotImplementedException();
         }
 
-        public Product GetProduct(int PNo)
+        public Product GetProduct(int Id)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +41,7 @@ namespace AspNetCoreMVC01.Services
             throw new NotImplementedException();
         }
 
-        public bool DeleteProduct(int PNo)
+        public bool DeleteProduct(int Id)
         {
             throw new NotImplementedException();
         }

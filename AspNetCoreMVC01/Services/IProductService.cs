@@ -17,9 +17,9 @@ namespace AspNetCoreMVC01.Services
         /// <summary>
         /// 제품 상세 보기
         /// </summary>
-        /// <param name="PNo"></param>
+        /// <param name="Id"></param>
         /// <returns></returns>
-        Product GetProduct(int PNo);
+        Product GetProduct(int Id);
         
         /// <summary>
         /// 제품 추가
@@ -38,8 +38,8 @@ namespace AspNetCoreMVC01.Services
         /// <summary>
         /// 제푸 삭제
         /// </summary>
-        /// <param name="PNo"></param>
+        /// <param name="Id"></param>
         /// <returns></returns>
-        bool DeleteProduct(int PNo);
+        bool DeleteProduct(int Id);
     }
 }

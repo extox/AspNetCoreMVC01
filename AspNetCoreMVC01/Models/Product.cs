@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreMVC01.Models
 {
+    [Keyless]
     public class Product
     {
         /// <summary>
         /// 제품 번호
         /// </summary>
-        public int PNo { get; set; }
+        /// 
+        public int Id { get; set; }
 
         /// <summary>
         /// 제품 이름

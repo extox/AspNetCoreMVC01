@@ -10,32 +10,24 @@ namespace AspNetCoreMVC01.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IConfiguration _configuration;
+        private readonly BaseDbContext _context;
 
-        public ProductService(IConfiguration configuration)
+        public ProductService(BaseDbContext context)
         {
-            _configuration = configuration;
+            _context = context;
 
-            //DB 초기화
-            using (var db = new BaseDbContext(_configuration))
-            {
-                DbInitializer.Initialize(db);
-            }
+            DbInitializer.Initialize(_context);
         }
-
 
         public List<Product> GetProductList()
         {
-            using (var db = new BaseDbContext(_configuration))
-            {
-                return db.ProductList
+            return _context.ProductList
                     .OrderByDescending(n => n.Id)
                     .ToList();
-            }
             throw new NotImplementedException();
         }
 
-        public Product GetProduct(int Id)
+        public Product GetProduct(int id)
         {
             throw new NotImplementedException();
         }
@@ -50,7 +42,7 @@ namespace AspNetCoreMVC01.Services
             throw new NotImplementedException();
         }
 
-        public bool DeleteProduct(int Id)
+        public bool DeleteProduct(int id)
         {
             throw new NotImplementedException();
         }

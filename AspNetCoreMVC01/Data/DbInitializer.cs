@@ -8,7 +8,6 @@ namespace AspNetCoreMVC01.Data
     {
         public static void Initialize(BaseDbContext context)
         {
-            // Look for any students.
             if (context.ProductList.Any())
             {
                 return;   // DB has been seeded
